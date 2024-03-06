@@ -18,7 +18,7 @@ Download Anaconda for easy environment management, specific tutorials will not b
 conda create -n Emojipytorch python=3.8.5
 activate Emojipytorch
 ```
-You can download the WHL file from the provided URL on your own, or clone my newly uploaded project, which includes the WHL file corresponding to Windows 64 bit
+You can download the WHL file from the provided URL on your own, or clone my newly uploaded project, which includes the WHL file corresponding to Windows 64 bit,Torchw file is too large and cannot be uploaded. Please download it yourself
 ```shell script
 #cd enter the project path where the WHL file is located
 F：
