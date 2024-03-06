@@ -69,7 +69,6 @@ The reproduction of the project was in January 2024. Recently, many friends have
     term_width = int(term_width)
     term_height = int(term_height)
 except ValueError:
-    # Handle the case where 'stty size' did not return the expected result 
     term_height = 24
     term_width = 80
 ```
