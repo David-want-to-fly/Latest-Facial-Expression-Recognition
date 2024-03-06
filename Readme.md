@@ -5,11 +5,64 @@ A CNN based pytorch implementation on facial expression recognition (FER2013 and
 ![Image text](https://raw.githubusercontent.com/WuJie1010/Facial-Expression-Recognition.Pytorch/master/demo/1.png)
 ![Image text](https://raw.githubusercontent.com/WuJie1010/Facial-Expression-Recognition.Pytorch/master/demo/2.png)
 
-## Dependencies ##
-- Python 2.7
-- Pytorch >=0.2.0
+## Dependencies (Tested by Dai Wei in 2024) ##
+- Python 3.8.5
+- Pytorch >=0.2.0 (torch 1.5.0+cu101  torchvision 0.6.0+cu101)
+- It is difficult to find these versions on the Pytorch official website. The Up owner provides a URL containing the whl files of various old versions:https://download.pytorch.org/whl/cpu/torch_stable.html
 - h5py (Preprocessing)
 - sklearn (plot confusion matrix)
+
+## Handle environment configuration (Tested by Dai Wei in 2024) ##
+Download Anaconda for easy environment management, specific tutorials will not be repeated
+```shell script
+conda create -n Emojipytorch python=3.8.5
+activate Emojipytorch
+```
+You can download the WHL file from the provided URL on your own, or clone my newly uploaded project, which includes the WHL file corresponding to Windows 64 bit
+```shell script
+#cd enter the project path where the WHL file is located
+F：
+cd "F:\Latest-Facial-Expression-Recognition-master"
+#Install the WHL file corresponding to torch 1.5.0+cu101 torch vision 0.6.0+cu101
+pip install torchvision-0.6.0+cpu-cp38-cp38-win_amd64.whl
+pip install torch-1.5.0+cpu-cp38-cp38-win_amd64.whl
+```
+H5py installation
+```shell script
+pip install h5py
+```
+sklearn installation：Provide the following URL（ https://www.lfd.uci.edu/ ~Go hlke/Python libs/) Download the corresponding configuration's whl file, or use the whl file under Win 64 in my project
+```shell script
+F：
+cd "F:\Latest-Facial-Expression-Recognition-master"
+pip install scikit_learn-1.1.1-cp38-cp38-win_amd64.whl
+pip install matplotlib
+pip install scikit-image
+```
+至此就完成了全部的项目更新维护工作，本人于2024年亲测有效，并且复现模型，但是由于该模型精度不高，估计是因为提供的训练集过少，如果大家想要进一步研究，建议自己扩充训练集，然后自己跑权重文件，本人复现这个项目也是自己摸爬滚打，其中花费了不少时间解决一些配置过老问题，如果能给我一个Star就更好啦！感谢支持！你的支持是我以后创作并发布的动力！最后祝大家学业进步！
+项目还有一些我自己运行过程中的报错，但是每个人的情况可能不同，我就不一一赘述，后续还有什么问题，本文没有提及的可以联系我，我力所能及帮助大家：944899059@qq.com 本人目前大二，时间相对充沛，尽可能回复大家，感谢理解与信赖！
+At this point, all project updates and maintenance work has been completed. I personally tested and validated the model in 2024, and reproduced it. However, due to the low accuracy of the model, it is estimated that the provided training set is too small. If you want to further research, it is recommended to expand the training set yourself, and then run the weight file yourself. I reproduced this project by myself, and spent a lot of time solving some old configuration problems, It would be even better if you could give me a Star! Thank you for your support! Your support is the motivation for me to create and publish in the future! Finally, I wish everyone academic progress!
+There are still some errors in the project that I encountered during my own operation, but each person's situation may be different, so I won't go into detail. If there are any further issues that were not mentioned in this article, please feel free to contact me. I will do my best to help everyone: 944899059@qq.com I am currently in my sophomore year and have plenty of time. I will try my best to reply to everyone. Thank you for your understanding and trust!
+
+## Errors encountered during the reproduction process (Tested by Dai Wei in 2024) ##
+The reproduction of the project was in January 2024. Recently, many friends have seen my messages under the original author's project, contacted me and asked me some questions. After reviewing the engineering logs written by the reproduction project at that time, they decided to share the error problems caused by changes in methods due to the changing times
+1：There is an incompatibility issue with visualize.py runtime:
+    ## Source Code：inputs = Variable(inputs, volatile=True)
+    Modify to：
+    with torch.no_grad():
+    	self.priors = Variable(self.priorbox.forward())
+2：NameError:name 'xrange' is not defined:
+  The xrange function in Python 2 becomes range in Python 3, so replace all xranges with range
+3： _, term_width = os.popen('stty size', 'r').read().split() ValueError: not enough values to unpack (expected 2, got 0):
+    ## Source Code： _, term_width = os.popen('stty size', 'r').read().split()   term_width = int(term_width)
+    try:
+    term_height, term_width = os.popen('stty size', 'r').read().split()
+    term_width = int(term_width)
+    term_height = int(term_height)
+except ValueError:
+    # Handle the case where 'stty size' did not return the expected result 
+    term_height = 24
+    term_width = 80
 
 ## Visualize for a test image by a pre-trained model ##
 - Firstly, download the pre-trained model from https://drive.google.com/open?id=1Oy_9YmpkSKX1Q8jkOhJbz3Mc7qjyISzU (or https://pan.baidu.com/s/1gCL0TlCwKctAy_5yhzHy5Q,  key: g2d3) and then put it in the "FER2013_VGG19" folder; Next, Put the test image (rename as 1.jpg) into the "images" folder, then 
