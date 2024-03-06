@@ -72,6 +72,13 @@ except ValueError:
     term_height = 24
     term_width = 80
 ```
+```shell script
+由于在github上整理，本地将不在保存
+本地与github差异：github上不具备
+torch-1.5.0+cpu-cp38-cp38-win_amd64.whl
+FER2013_VGG19文件夹下的PrivateTest_model.t7权重文件
+根据报错修改后的代码
+```
 ## Visualize for a test image by a pre-trained model ##
 - Firstly, download the pre-trained model from https://drive.google.com/open?id=1Oy_9YmpkSKX1Q8jkOhJbz3Mc7qjyISzU (or https://pan.baidu.com/s/1gCL0TlCwKctAy_5yhzHy5Q,  key: g2d3) and then put it in the "FER2013_VGG19" folder; Next, Put the test image (rename as 1.jpg) into the "images" folder, then 
 - python visualize.py
