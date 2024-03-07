@@ -64,6 +64,7 @@ The reproduction of the project was in January 2024. Recently, many friends have
 ```shell script
 3： _, term_width = os.popen('stty size', 'r').read().split() ValueError: not enough values to unpack (expected 2, got 0):
     ## Source Code： _, term_width = os.popen('stty size', 'r').read().split()   term_width = int(term_width)
+    Modify to：
     try:
     term_height, term_width = os.popen('stty size', 'r').read().split()
     term_width = int(term_width)
